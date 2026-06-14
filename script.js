@@ -214,3 +214,53 @@ function loadStock(stock) {
     searchStock();
 
 }
+
+const companies = {
+
+    AAPL: {
+        name: "Apple Inc.",
+        sector: "Technology",
+        ceo: "Tim Cook",
+        marketCap: "$3T",
+        description: "Apple is one of the world's largest technology companies, known for products like the iPhone, Mac, iPad, Apple Watch, 
+            and services such as iCloud, Apple Music, and the App Store. The company generates revenue from both hardware sales and a 
+    rapidly growing services ecosystem, making it a favorite among long-term investors.
+Key Highlights
+Consumer technology leader
+Strong brand loyalty and ecosystem
+Growing services business
+Consistent profitability and cash flow."
+    },
+
+    TSLA: {
+        name: "Tesla Inc.",
+        sector: "Automotive",
+        ceo: "Elon Musk",
+        marketCap: "$1T",
+        description: "Tesla is an electric vehicle and clean energy company known for vehicles such as the Model 3, Model Y, Model S, and Cybertruck. Beyond automobiles, Tesla operates in energy storage, solar solutions, and autonomous driving technologies. The stock is known for high growth potential and higher volatility compared to many large-cap stocks.
+
+Key Highlights
+
+Global EV market leader
+Focus on autonomous driving and AI
+Energy storage and solar business
+High-growth but volatile stock."
+
+    },
+
+    MSFT: {
+        name: "Microsoft",
+        sector: "Technology",
+        ceo: "Satya Nadella",
+        marketCap: "$3T",
+        description: "Microsoft is a global software and cloud computing company. Its major products include Windows, Microsoft 365, Azure Cloud, LinkedIn, GitHub, and Xbox. The company's strong position in cloud computing and artificial intelligence has made it one of the most valuable companies in the world.
+
+Key Highlights
+
+Leader in cloud computing (Azure)
+Strong AI and enterprise software presence
+Diverse revenue streams
+Consistent earnings growth."
+    }
+
+};
