@@ -1,38 +1,144 @@
-<h2>Portfolio Simulator</h2>
+<!DOCTYPE html>
+<html lang="en">
 
-<input type="text" id="stockName" placeholder="Stock Name">
+<head>
 
-<input type="number" id="buyPrice" placeholder="Buy Price">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<input type="number" id="currentPrice" placeholder="Current Price">
+<title>TradeMind AI</title>
 
-<input type="number" id="quantity" placeholder="Quantity">
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<nav>
+
+<h1>📈 TradeMind AI</h1>
+
+<p>AI Powered Stock Research Platform</p>
+
+</nav>
+
+<div class="container">
+
+<!-- STOCK SEARCH -->
+
+<section class="card">
+
+<h2>🔍 Stock Search</h2>
+
+<input
+type="text"
+id="stockInput"
+placeholder="Enter Stock Symbol (AAPL, TSLA, MSFT)">
+
+<button onclick="searchStock()">
+Search Stock
+</button>
+
+<div id="result"></div>
+
+</section>
+
+<!-- STOCK CHART -->
+
+<section class="card">
+
+<h2>📊 Live Stock Chart</h2>
+
+<div id="tradingview_chart"></div>
+
+</section>
+
+<!-- PORTFOLIO SIMULATOR -->
+
+<section class="card">
+
+<h2>💼 Portfolio Simulator</h2>
+
+<input
+type="number"
+id="buyPrice"
+placeholder="Buy Price">
+
+<input
+type="number"
+id="currentPrice"
+placeholder="Current Price">
+
+<input
+type="number"
+id="quantity"
+placeholder="Quantity">
 
 <button onclick="calculatePortfolio()">
-Calculate
+Calculate Portfolio
 </button>
 
 <div id="portfolioResult"></div>
-<h2>My Watchlist</h2>
+
+</section>
+
+<!-- WATCHLIST -->
+
+<section class="card">
+
+<h2>⭐ My Watchlist</h2>
 
 <input
 type="text"
 id="watchStock"
-placeholder="Enter Stock Name">
+placeholder="Stock Symbol">
 
 <button onclick="addWatchlist()">
-Add Stock
+Add To Watchlist
 </button>
 
 <ul id="watchlist"></ul>
 
-<h2>Stock Chart</h2>
-
-<div
-class="tradingview-widget-container">
-
-<div
-id="tradingview_chart">
-</div>
+</section>
 
 </div>
+
+<!-- TradingView -->
+
+<script src="https://s3.tradingview.com/tv.js"></script>
+
+<script>
+
+new TradingView.widget({
+
+"width":"100%",
+
+"height":500,
+
+"symbol":"NASDAQ:AAPL",
+
+"interval":"D",
+
+"timezone":"Asia/Kolkata",
+
+"theme":"dark",
+
+"style":"1",
+
+"locale":"en",
+
+"toolbar_bg":"#111827",
+
+"enable_publishing":false,
+
+"container_id":"tradingview_chart"
+
+});
+
+</script>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
