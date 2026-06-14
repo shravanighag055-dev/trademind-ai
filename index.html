@@ -1,31 +1,15 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>TradeMind AI</title>
-<link rel="stylesheet" href="style.css">
-</head>
+<h2>Portfolio Simulator</h2>
 
-<body>
+<input type="text" id="stockName" placeholder="Stock Name">
 
-<nav>
-<h1>TradeMind AI</h1>
-</nav>
+<input type="number" id="buyPrice" placeholder="Buy Price">
 
-<div class="hero">
-<h2>AI Powered Stock Research Platform</h2>
-<p>Analyze Stocks • Track Portfolio • Stay Ahead</p>
+<input type="number" id="currentPrice" placeholder="Current Price">
 
-<input id="stockInput" placeholder="Enter Stock Symbol">
+<input type="number" id="quantity" placeholder="Quantity">
 
-<button onclick="searchStock()">
-Search
+<button onclick="calculatePortfolio()">
+Calculate
 </button>
 
-<div id="result"></div>
-
-</div>
-
-<script src="script.js"></script>
-
-</body>
-</html>
+<div id="portfolioResult"></div>
