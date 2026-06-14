@@ -4,6 +4,38 @@
 
 function searchStock() {
 
+let company =
+companies[stock.toUpperCase()];
+
+if(company){
+
+document.getElementById("companyProfile").innerHTML =
+
+`
+<h3>${company.name}</h3>
+
+<p><strong>Sector:</strong> ${company.sector}</p>
+
+<p><strong>CEO:</strong> ${company.ceo}</p>
+
+<p><strong>Market Cap:</strong> ${company.marketCap}</p>
+
+<p>${company.description}</p>
+`;
+
+}
+else{
+
+document.getElementById("companyProfile").innerHTML =
+
+`
+<h3>${stock.toUpperCase()}</h3>
+
+<p>Company data not available.</p>
+`;
+
+}
+
     let stock =
     document.getElementById("stockInput").value.trim();
 
