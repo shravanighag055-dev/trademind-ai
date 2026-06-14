@@ -2,178 +2,130 @@
 <html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TradeMind AI</title>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
 
-<title>TradeMind AI</title>
-
-<link rel="stylesheet" href="style.css">
-
+    <script src="https://s3.tradingview.com/tv.js"></script>
 </head>
 
 <body>
 
-<nav>
+    <header>
+        <h1>📈 TradeMind AI</h1>
+        <p>Stock Market Research Platform</p>
+    </header>
 
-<h1>📈 TradeMind AI</h1>
+    <!-- Dashboard -->
 
-<p>AI Powered Stock Research Platform</p>
+    <section class="dashboard">
 
-</nav>
+        <div class="card">
+            <h3>Portfolio Value</h3>
+            <p id="portfolioValue">₹0</p>
+        </div>
 
-<div class="container">
+        <div class="card">
+            <h3>Watchlist Stocks</h3>
+            <p id="watchlistCount">0</p>
+        </div>
 
-<!-- STOCK SEARCH -->
+    </section>
 
-<section class="card">
+    <!-- Search -->
 
-  <section class="dashboard">
+    <section class="box">
 
-<div class="dashboard-card">
-<h3>NIFTY 50</h3>
-<p id="niftyValue">22,500</p>
-</div>
+        <h2>Stock Search</h2>
 
-<div class="dashboard-card">
-<h3>SENSEX</h3>
-<p id="sensexValue">74,000</p>
-</div>
+        <input
+            type="text"
+            id="stockInput"
+            placeholder="AAPL, TSLA, MSFT">
 
-<div class="dashboard-card">
-<h3>Portfolio Value</h3>
-<p id="portfolioValue">₹0</p>
-</div>
+        <button onclick="searchStock()">
+            Search
+        </button>
 
-<div class="dashboard-card">
-<h3>Watchlist Stocks</h3>
-<p id="watchlistCount">0</p>
-</div>
+        <div id="result"></div>
 
-</section>
+    </section>
 
-<h2>🔍 Stock Search</h2>
+    <!-- Chart -->
 
-<input
-type="text"
-id="stockInput"
-placeholder="Enter Stock Symbol (AAPL, TSLA, MSFT)">
+    <section class="box">
 
-<button onclick="searchStock()">
-Search Stock
-</button>
+        <h2>Stock Chart</h2>
 
-<div id="result"></div>
+        <div id="tradingview_chart"></div>
 
-</section>
+    </section>
 
-<!-- STOCK CHART -->
+    <!-- Company Profile -->
 
-<section class="card">
+    <section class="box">
 
-  <section class="card">
+        <h2>Company Profile</h2>
 
-<h2>🏢 Company Profile</h2>
+        <div id="companyProfile">
 
-<div id="companyProfile">
+            Search a stock to view details.
 
-<p>Search a stock to view company details.</p>
+        </div>
 
-</div>
+    </section>
 
-</section>
+    <!-- Portfolio -->
 
-<h2>📊 Live Stock Chart</h2>
+    <section class="box">
 
-<div id="tradingview_chart"></div>
+        <h2>Portfolio Simulator</h2>
 
-</section>
+        <input
+            type="number"
+            id="buyPrice"
+            placeholder="Buy Price">
 
-<!-- PORTFOLIO SIMULATOR -->
+        <input
+            type="number"
+            id="currentPrice"
+            placeholder="Current Price">
 
-<section class="card">
+        <input
+            type="number"
+            id="quantity"
+            placeholder="Quantity">
 
-<h2>💼 Portfolio Simulator</h2>
+        <button onclick="calculatePortfolio()">
+            Calculate
+        </button>
 
-<input
-type="number"
-id="buyPrice"
-placeholder="Buy Price">
+        <div id="portfolioResult"></div>
 
-<input
-type="number"
-id="currentPrice"
-placeholder="Current Price">
+    </section>
 
-<input
-type="number"
-id="quantity"
-placeholder="Quantity">
+    <!-- Watchlist -->
 
-<button onclick="calculatePortfolio()">
-Calculate Portfolio
-</button>
+    <section class="box">
 
-<div id="portfolioResult"></div>
+        <h2>Watchlist</h2>
 
-</section>
+        <input
+            type="text"
+            id="watchStock"
+            placeholder="Stock Symbol">
 
-<!-- WATCHLIST -->
+        <button onclick="addWatchlist()">
+            Add
+        </button>
 
-<section class="card">
+        <ul id="watchlist"></ul>
 
-<h2>⭐ My Watchlist</h2>
+    </section>
 
-<input
-type="text"
-id="watchStock"
-placeholder="Stock Symbol">
-
-<button onclick="addWatchlist()">
-Add To Watchlist
-</button>
-
-<ul id="watchlist"></ul>
-
-</section>
-
-</div>
-
-<!-- TradingView -->
-
-<script src="https://s3.tradingview.com/tv.js"></script>
-
-<script>
-
-new TradingView.widget({
-
-"width":"100%",
-
-"height":500,
-
-"symbol":"NASDAQ:AAPL",
-
-"interval":"D",
-
-"timezone":"Asia/Kolkata",
-
-"theme":"dark",
-
-"style":"1",
-
-"locale":"en",
-
-"toolbar_bg":"#111827",
-
-"enable_publishing":false,
-
-"container_id":"tradingview_chart"
-
-});
-
-</script>
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 
 </body>
 
