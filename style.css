@@ -1,0 +1,20 @@
+body{
+font-family:Arial;
+background:#111827;
+color:white;
+text-align:center;
+}
+
+.hero{
+margin-top:100px;
+}
+
+input{
+padding:10px;
+width:250px;
+}
+
+button{
+padding:10px 20px;
+cursor:pointer;
+}
