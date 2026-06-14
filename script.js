@@ -77,6 +77,11 @@ function calculatePortfolio() {
     let currentValue =
     currentPrice * quantity;
 
+    document.getElementById(
+"portfolioValue"
+).innerText =
+"₹" + currentValue.toFixed(2);
+
     let profit =
     currentValue - investment;
 
@@ -168,8 +173,38 @@ function removeStock(index) {
         JSON.stringify(watchlist)
     );
 
-    displayWatchlist();
+ function displayWatchlist() {
 
+    let list =
+    document.getElementById("watchlist");
+
+    list.innerHTML = "";
+
+    watchlist.forEach((stock, index) => {
+
+        list.innerHTML +=
+        `
+        <li>
+            ${stock}
+
+            <button onclick="loadStock('${stock}')">
+                View
+            </button>
+
+            <button onclick="removeStock(${index})">
+                ❌
+            </button>
+        </li>
+        `;
+
+    });
+
+    // Update dashboard count
+    document.getElementById(
+        "watchlistCount"
+    ).innerText = watchlist.length;
+
+}
 }
 
 function loadStock(stock) {
