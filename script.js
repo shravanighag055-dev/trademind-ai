@@ -1,6 +1,6 @@
-// ===============================
+// =========================
 // COMPANY DATA
-// ===============================
+// =========================
 
 const companies = {
 
@@ -8,241 +8,214 @@ const companies = {
         name: "Apple Inc.",
         sector: "Technology",
         ceo: "Tim Cook",
-        marketCap: "$3 Trillion",
-        description: "Consumer electronics and software company."
+        marketCap: "$3 Trillion"
     },
 
     TSLA: {
         name: "Tesla Inc.",
         sector: "Automotive",
         ceo: "Elon Musk",
-        marketCap: "$1 Trillion",
-        description: "Electric vehicle and clean energy company."
+        marketCap: "$1 Trillion"
     },
 
     MSFT: {
-        name: "Microsoft Corporation",
+        name: "Microsoft",
         sector: "Technology",
         ceo: "Satya Nadella",
-        marketCap: "$3 Trillion",
-        description: "Software, cloud computing and AI company."
-    },
-
-    NVDA: {
-        name: "NVIDIA Corporation",
-        sector: "Semiconductors",
-        ceo: "Jensen Huang",
-        marketCap: "$3 Trillion",
-        description: "AI chips and graphics processing leader."
+        marketCap: "$3 Trillion"
     }
 
 };
 
-// ===============================
-// STOCK SEARCH + CHART
-// ===============================
+// =========================
+// LOAD DEFAULT CHART
+// =========================
+
+window.onload = function () {
+
+    new TradingView.widget({
+        width: "100%",
+        height: 500,
+        symbol: "NASDAQ:AAPL",
+        interval: "D",
+        timezone: "Asia/Kolkata",
+        theme: "dark",
+        style: "1",
+        locale: "en",
+        container_id: "tradingview_chart"
+    });
+
+    displayWatchlist();
+
+};
+
+// =========================
+// SEARCH STOCK
+// =========================
 
 function searchStock() {
 
     let stock =
-    document.getElementById("stockInput").value.trim();
+        document.getElementById("stockInput")
+        .value
+        .toUpperCase();
 
-    if(stock === "") {
-
-        alert("Please enter a stock symbol");
-
+    if (stock === "") {
+        alert("Enter Stock Symbol");
         return;
     }
 
-    document.getElementById("result").innerHTML =
-    `Showing chart for: <b>${stock.toUpperCase()}</b>`;
+    document.getElementById("result")
+        .innerHTML =
+        "Showing: " + stock;
 
     document.getElementById(
         "tradingview_chart"
     ).innerHTML = "";
 
     new TradingView.widget({
-
-        "width": "100%",
-
-        "height": 500,
-
-        "symbol": "NASDAQ:" + stock.toUpperCase(),
-
-        "interval": "D",
-
-        "timezone": "Asia/Kolkata",
-
-        "theme": "dark",
-
-        "style": "1",
-
-        "locale": "en",
-
-        "toolbar_bg": "#111827",
-
-        "enable_publishing": false,
-
-        "container_id": "tradingview_chart"
-
+        width: "100%",
+        height: 500,
+        symbol: "NASDAQ:" + stock,
+        interval: "D",
+        timezone: "Asia/Kolkata",
+        theme: "dark",
+        style: "1",
+        locale: "en",
+        container_id: "tradingview_chart"
     });
 
     let company =
-    companies[stock.toUpperCase()];
+        companies[stock];
 
-    if(company){
-
-        document.getElementById(
-            "companyProfile"
-        ).innerHTML =
-
-        `
-        <h3>${company.name}</h3>
-
-        <p><strong>Sector:</strong>
-        ${company.sector}</p>
-
-        <p><strong>CEO:</strong>
-        ${company.ceo}</p>
-
-        <p><strong>Market Cap:</strong>
-        ${company.marketCap}</p>
-
-        <p>${company.description}</p>
-        `;
-
-    }
-    else{
+    if (company) {
 
         document.getElementById(
             "companyProfile"
         ).innerHTML =
 
-        `
-        <h3>${stock.toUpperCase()}</h3>
+            `
+            <h3>${company.name}</h3>
 
-        <p>Company data not available.</p>
-        `;
+            <p><b>Sector:</b> ${company.sector}</p>
+
+            <p><b>CEO:</b> ${company.ceo}</p>
+
+            <p><b>Market Cap:</b> ${company.marketCap}</p>
+            `;
+
+    } else {
+
+        document.getElementById(
+            "companyProfile"
+        ).innerHTML =
+
+            `
+            <p>
+            Company information not available.
+            </p>
+            `;
 
     }
 
 }
 
-// ===============================
-// PORTFOLIO SIMULATOR
-// ===============================
+// =========================
+// PORTFOLIO CALCULATOR
+// =========================
 
 function calculatePortfolio() {
 
     let buyPrice =
-    parseFloat(
-        document.getElementById(
-            "buyPrice"
-        ).value
-    );
+        parseFloat(
+            document.getElementById(
+                "buyPrice"
+            ).value
+        );
 
     let currentPrice =
-    parseFloat(
-        document.getElementById(
-            "currentPrice"
-        ).value
-    );
+        parseFloat(
+            document.getElementById(
+                "currentPrice"
+            ).value
+        );
 
     let quantity =
-    parseInt(
-        document.getElementById(
-            "quantity"
-        ).value
-    );
+        parseInt(
+            document.getElementById(
+                "quantity"
+            ).value
+        );
 
-    if(
+    if (
         isNaN(buyPrice) ||
         isNaN(currentPrice) ||
         isNaN(quantity)
-    ){
+    ) {
 
-        alert(
-            "Please fill all fields correctly"
-        );
-
+        alert("Fill all fields");
         return;
+
     }
 
     let investment =
-    buyPrice * quantity;
+        buyPrice * quantity;
 
     let currentValue =
-    currentPrice * quantity;
+        currentPrice * quantity;
 
     let profit =
-    currentValue - investment;
-
-    let returnPercent =
-    (
-        (profit / investment) * 100
-    ).toFixed(2);
+        currentValue - investment;
 
     document.getElementById(
         "portfolioResult"
     ).innerHTML =
 
-    `
-    <h3>Portfolio Results</h3>
+        `
+        <p>
+        Investment: ₹${investment.toFixed(2)}
+        </p>
 
-    <p>
-    <strong>Investment:</strong>
-    ₹${investment.toFixed(2)}
-    </p>
+        <p>
+        Current Value: ₹${currentValue.toFixed(2)}
+        </p>
 
-    <p>
-    <strong>Current Value:</strong>
-    ₹${currentValue.toFixed(2)}
-    </p>
-
-    <p>
-    <strong>Profit/Loss:</strong>
-    ₹${profit.toFixed(2)}
-    </p>
-
-    <p>
-    <strong>Return:</strong>
-    ${returnPercent}%
-    </p>
-    `;
+        <p>
+        Profit/Loss: ₹${profit.toFixed(2)}
+        </p>
+        `;
 
     document.getElementById(
         "portfolioValue"
     ).innerText =
-    "₹" + currentValue.toFixed(2);
+        "₹" +
+        currentValue.toFixed(2);
 
 }
 
-// ===============================
+// =========================
 // WATCHLIST
-// ===============================
+// =========================
 
 let watchlist =
-JSON.parse(
-    localStorage.getItem(
-        "watchlist"
-    )
-) || [];
-
-displayWatchlist();
+    JSON.parse(
+        localStorage.getItem(
+            "watchlist"
+        )
+    ) || [];
 
 function addWatchlist() {
 
     let stock =
-    document.getElementById(
-        "watchStock"
-    ).value.trim();
+        document.getElementById(
+            "watchStock"
+        ).value
+        .toUpperCase();
 
-    if(stock === "")
-    return;
+    if (stock === "")
+        return;
 
-    watchlist.push(
-        stock.toUpperCase()
-    );
+    watchlist.push(stock);
 
     localStorage.setItem(
         "watchlist",
@@ -251,61 +224,58 @@ function addWatchlist() {
         )
     );
 
-    displayWatchlist();
-
     document.getElementById(
         "watchStock"
     ).value = "";
+
+    displayWatchlist();
 
 }
 
 function displayWatchlist() {
 
     let list =
-    document.getElementById(
-        "watchlist"
-    );
+        document.getElementById(
+            "watchlist"
+        );
 
     list.innerHTML = "";
 
     watchlist.forEach(
-        (stock,index) => {
+        (stock, index) => {
 
-        list.innerHTML +=
+            list.innerHTML +=
 
-        `
-        <li>
+                `
+                <li>
 
-            ${stock}
+                    ${stock}
 
-            <button
-            onclick="loadStock('${stock}')">
-            View
-            </button>
+                    <button
+                    onclick="loadStock('${stock}')">
+                    View
+                    </button>
 
-            <button
-            onclick="removeStock(${index})">
-            ❌
-            </button>
+                    <button
+                    onclick="removeStock(${index})">
+                    ❌
+                    </button>
 
-        </li>
-        `;
+                </li>
+                `;
 
-    });
+        });
 
     document.getElementById(
         "watchlistCount"
     ).innerText =
-    watchlist.length;
+        watchlist.length;
 
 }
 
 function removeStock(index) {
 
-    watchlist.splice(
-        index,
-        1
-    );
+    watchlist.splice(index, 1);
 
     localStorage.setItem(
         "watchlist",
